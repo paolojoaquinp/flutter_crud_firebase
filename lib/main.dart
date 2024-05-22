@@ -1,6 +1,7 @@
 import 'package:crud_firebase/data/person_firebase.dart';
 import 'package:crud_firebase/domain/repository/person_repository.dart';
 import 'package:crud_firebase/ui/features/non-realtime/list_screen.dart';
+import 'package:crud_firebase/ui/features/realtime/list_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,14 +24,14 @@ class MyApp extends StatelessWidget {
         ),
       ], 
       child: MaterialApp(
-        title: 'Material App',
+        title: 'Firebase Crud',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         home: const HomePage(
-          title: 'Flutter Demo Home Page',
+          title: 'Firebase Crud',
         ),
       ),
     );
@@ -60,7 +61,20 @@ class HomePage extends StatelessWidget {
                   return ListNoRealtimeScreen.init();
                 }));
               },
-              child: const Text('no-realtime'),
+              child: const Text('no-realtime',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                  return ListRealtimeScreen.init();
+                }));
+              },
+              child: const Text('realtime',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             MaterialButton(onPressed: () {}),
           ],
